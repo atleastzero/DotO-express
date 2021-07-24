@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken")
 module.exports = app => {
   // SIGN UP FORM
   app.get("/sign-up", (req, res) => {
-    res.render("sign-up")
+    var currentUser = req.user
+
+    res.render("sign-up", { currentUser })
   })
 
   // SIGN UP POST
@@ -43,13 +45,17 @@ module.exports = app => {
 
   // LOGOUT
   app.get("/logout", (req, res) => {
+    var currentUser = req.user
+
     res.clearCookie("nToken")
-    res.redirect("/")
+    res.redirect("/", { currentUser })
   })
 
   // LOGIN FORM
   app.get("/login", (req, res) => {
-    res.render("login")
+    var currentUser = req.user
+
+    res.render("login", { currentUser })
   })
 
   // LOGIN
@@ -78,7 +84,7 @@ module.exports = app => {
           })
           // Set a cookie and redirect to root
           res.cookie("nToken", token, { maxAge: 900000, httpOnly: true })
-          res.redirect("/")
+          res.redirect("/", { currentUser: user })
         })
       })
       .catch(err => {

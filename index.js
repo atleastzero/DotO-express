@@ -46,6 +46,7 @@ app.set('view engine', 'handlebars')
 require('./data/doto-db');
 
 require('./controllers/auth')(app)
+require('./controllers/orgs')(app)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
