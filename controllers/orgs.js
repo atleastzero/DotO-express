@@ -29,7 +29,7 @@ module.exports = (app) => {
       org
         .save()
         .then(org => {
-          res.redirect(`/orgs/${org._id}`, { currentUser })
+          res.redirect(`/orgs/${org._id}`)
         })
         .catch(err => {
           console.log(err.message)

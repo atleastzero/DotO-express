@@ -48,7 +48,7 @@ module.exports = app => {
     var currentUser = req.user
 
     res.clearCookie("nToken")
-    res.redirect("/", { currentUser })
+    res.redirect("/")
   })
 
   // LOGIN FORM
